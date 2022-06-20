@@ -19,7 +19,7 @@
 <p>Project Flowchart</p>
 </blockquote>
 <div style="background-color: white" align="center">
-<img alt="image alt text" src="https://storage.googleapis.com/crio-content-container-assets/ME_ME_PROJECT_SO_AUTO_SEARCH_MODULE_ME_PROJECT_SO_AUTO_SEARCH_MODULE_SO_AUTO_SEARCH_image_0.png" style="max-width:100%;">
+<img alt="image alt text" src="flowchart.png" style="max-width:100%;">
 </div>
 
 <blockquote>

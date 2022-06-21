@@ -5,11 +5,12 @@ from colorama import init, Fore
 
 
 class StackOverflow:
-    def __init__(self, cmd, AutoSearch=True, language="python"):
+    def __init__(self, cmd, AutoSearch=True, language="python", Limit=6):
         init(autoreset=True)
         self.CMD = cmd
         self.LANGUAGE = language
         self.returncode = None
+        self.limit = Limit
         if AutoSearch:
             self.__start__()
 
@@ -49,15 +50,22 @@ class StackOverflow:
     def open_web(self):
         """open the browser tabs if answer is find"""
         urls = self.get_answered_urls()
+        limit = 0
         if len(urls) != 0:
-            for url in urls:
-                webbrowser.open(url)
-            print(Fore.LIGHTGREEN_EX+"Stackoverflow opened")
+                for url in urls:
+                    if limit != self.limit:
+                        webbrowser.open(url)
+                        limit += 1
+                    else:
+                        break
+
+                print(Fore.LIGHTGREEN_EX+"Stackoverflow opened")
         else:
             print(Fore.YELLOW+"oop! answer not found")
 
     def __start__(self):
         output = self.extract_error()
+
         if self.returncode == 1:
             self.open_web()
         else:

@@ -26,10 +26,10 @@
 <i>Limitations of the project</i>
 </blockquote>
 
-<i>As of now it can find errors of python codes only</i>
+<i>As of now it can find errors of python,JS(testing) codes only</i>
 
 <blockquote>
 <i>Upcoming updates Bringing on</i>
 </blockquote>
 
-<i>c,c++,js,go languages are going to add</i>
+<i>c,c++,go languages are going to add</i>

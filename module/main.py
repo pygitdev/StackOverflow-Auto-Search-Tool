@@ -16,23 +16,26 @@ class StackOverflow:
 
     def extract_error(self):
         problem_finder = Popen(self.CMD, shell=True, encoding="UTF-8", stdout=PIPE, stderr=PIPE)
-        output, error = problem_finder.communicate()
+        output, raw_error = problem_finder.communicate()
         self.returncode = problem_finder.returncode
         if self.returncode == 1:
-            """We only need the type of error"""
-            error = error.strip().split("\n")
-            TypeOfError = error[-1]
+            """We only need the type of raw_error"""
+            errors = raw_error.strip().split("\n")
+            TypeOfError = ""
+            for error in errors:
+                if "Error" in error:
+                    TypeOfError = error
             return TypeOfError
-        elif self.returncode == 0 and error == "":
+        elif self.returncode == 0 and raw_error == "":
             """if file run successfully"""
             return f"{Fore.GREEN}output : {output} \nsuccessfully run"
         else:
             """if given cmd or directory is wrong"""
-            return Fore.RED + error
+            return Fore.RED + raw_error
 
     def get_request(self):
         """sending get request to stackoverflow"""
-        url = "https://api.stackexchange.com/2.3/search?order=desc&tagged={}&sort=activity&intitle={}&site=stackoverflow"
+        url = "https://api.stackexchange.com/"+"/2.3/search?order=desc&tagged={}&sort=activity&intitle={}&site=stackoverflow"
         ERROR = self.extract_error()
         print(ERROR)
         req = requests.get(url.format(self.LANGUAGE, ERROR))
